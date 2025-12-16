@@ -294,12 +294,12 @@ if __name__ == "__main__":
         _y = test_in_samples['y'][index]
         print("relative loss: ", OperatorTrainer.relative_l2_loss(out, test_out_samples['y'][index]))
         # Input x
-        x = data_convert_back2d(_y, 32)
+        x = data_convert_back2d(_y, 16)
         # Ground-truth
-        y = data_convert_back2d(test_out_samples['y'][index], 32)
+        y = data_convert_back2d(test_out_samples['y'][index], 16)
         # Model prediction
         out = out.squeeze(0)
-        out = data_convert_back2d(out, 32).to(device)
+        out = data_convert_back2d(out, 16).to(device)
 
         ax = fig.add_subplot(3, 3, index * 3 + 1)
         x = x.cpu().squeeze().detach().numpy()
@@ -327,4 +327,5 @@ if __name__ == "__main__":
     fig.suptitle("Inputs, ground-truth output and prediction.", y=0.98)
     plt.tight_layout()
     fig.show()
+
     input()
